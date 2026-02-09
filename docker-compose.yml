@@ -1,0 +1,30 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Containerfile
+    image: golang-node-dev:latest
+    container_name: golang-node-app
+    
+    # Keep container running
+    command: tail -f /dev/null
+    
+    # Mount current directory to /app in container
+    volumes:
+      - .:/app
+    
+    # Set working directory
+    working_dir: /app
+    
+    # Environment variables (customize as needed)
+    environment:
+      - NODE_ENV=development
+      - GO111MODULE=on
+    
+    # Expose ports (customize as needed)
+    ports:
+      - "3000:3000"  # Node.js app
+      - "8080:8080"  # Go app
+    
+    # Optional: add network mode
+    # network_mode: bridge

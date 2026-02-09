@@ -1,0 +1,17 @@
+services:
+  bootdev:
+    build:
+      context: .
+      dockerfile: Containerfile.bootdev
+    image: bootdev-cli:latest
+    container_name: bootdev-app
+    command: tail -f /dev/null
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+      - GO111MODULE=on
+    ports:
+      - "3000:3000"
+      - "8080:8080"
