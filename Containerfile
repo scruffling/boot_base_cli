@@ -5,8 +5,17 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install nvm
-ENV NVM_DIR=/root/.nvm
+# Create app user and /app directory
+RUN useradd -m -s /bin/bash app && \
+    mkdir -p /app && \
+    chown -R app:app /app
+
+# Switch to app user
+USER app
+WORKDIR /home/app
+
+# Install nvm as app user
+ENV NVM_DIR=/home/app/.nvm
 ENV NODE_VERSION=21.7.0
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \

@@ -3,8 +3,8 @@ FROM golang-node-dev:latest
 # Install bootdev CLI
 RUN go install github.com/bootdotdev/bootdev@latest
 
-# Ensure GOPATH/bin is in PATH (it should already be in the golang base image)
-ENV PATH=$PATH:/go/bin
+# Ensure user's GOPATH/bin is in PATH
+ENV PATH=$PATH:/home/app/go/bin
 
 # Verify installation
 RUN bootdev --version || bootdev version || echo "bootdev installed successfully"
