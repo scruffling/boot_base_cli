@@ -5,8 +5,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Create app user and /app directory
-RUN useradd -m -s /bin/bash app && \
+# Create app user with UID 1000 and /app directory
+RUN useradd -m -u 1000 -s /bin/bash app && \
     mkdir -p /app && \
     chown -R app:app /app
 

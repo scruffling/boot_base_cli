@@ -7,7 +7,7 @@ services:
     container_name: bootdev-app
     command: tail -f /dev/null
     volumes:
-      - .:/app
+      - ./app:/app:U
     working_dir: /app
     environment:
       - NODE_ENV=development

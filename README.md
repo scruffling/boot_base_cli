@@ -68,7 +68,41 @@ Inside the container, you have access to:
 - `nvm` - Node Version Manager
 - `bootdev` - Boot.dev CLI tool
 
+## Working with Files (Rootless Podman)
+
+When using rootless Podman, the container runs as a non-root user (UID 1000) for security. Due to user namespace mapping, files created by the container will appear with a different UID (like 100999) on your host.
+
+To work with these files from your host, use `podman unshare`:
+
+```bash
+# View files created by the container
+podman unshare ls -la app/
+
+# Edit a file created by the container
+podman unshare vim app/somefile.txt
+
+# Remove files created by the container
+podman unshare rm -rf app/build/
+
+# Change ownership back to your host user (if needed)
+podman unshare chown -R 1000:1000 app/
+```
+
+This is a security feature that keeps the container isolated from your host user while still allowing both to work with the same files.
+
 ## Requirements
 
 - Podman or Docker installed
 - podman-docker package (if using Podman with docker-compose)
+
+# boot.dev
+
+In the running container:
+
+```bash
+bootdev login
+```
+
+This will prompt to visit <https://boot.dev/cli/login> 
+
+
