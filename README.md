@@ -105,4 +105,27 @@ bootdev login
 
 This will prompt to visit <https://boot.dev/cli/login> 
 
+## Babel
+
+To install and use Babel in the app:
+
+``` bash
+npm i -D @babel/core @babel/cli @babel/preset-env
+```
+
+Ensure a `.babelrc` file is present
+
+``` json
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+
+Transpile, e.g.:
+
+``` bash
+npx babel main.js --out-file main.compiled.js
+```
+
+
 
