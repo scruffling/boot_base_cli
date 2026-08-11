@@ -1,4 +1,4 @@
-FROM golang:1.25-trixie
+FROM golang:1.26-trixie
 
 # Install dependencies needed for nvm
 RUN apt-get update && apt-get install -y \
@@ -16,7 +16,7 @@ WORKDIR /home/app
 
 # Install nvm as app user
 ENV NVM_DIR=/home/app/.nvm
-ENV NODE_VERSION=21.7.0
+ENV NODE_VERSION=24.19.0
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
     && . "$NVM_DIR/nvm.sh" \
