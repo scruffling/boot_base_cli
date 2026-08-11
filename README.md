@@ -7,8 +7,8 @@ This repository contains Docker/Podman container configurations for a developmen
 ### Base Image (golang-node-dev)
 
 The base image includes:
-- Go 1.25 (from golang:1.25-trixie)
-- Node.js v21.7.0 (via nvm)
+- Go 1.26 (from golang:1.26-trixie)
+- Node.js LTS (via nvm)
 - npm
 
 **File:** `Containerfile`
