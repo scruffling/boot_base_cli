@@ -11,14 +11,16 @@ services:
     
     # Mount current directory to /app in container
     volumes:
-      - .:/app
+      - ./app:/app:z
     
     # Set working directory
     working_dir: /app
     
+    # Podman: keep host UID inside container
+    userns_mode: "keep-id"
+    
     # Environment variables (customize as needed)
     environment:
-      - NODE_ENV=development
       - GO111MODULE=on
     
     # Expose ports (customize as needed)

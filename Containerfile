@@ -1,4 +1,4 @@
-FROM golang:1.26-trixie
+FROM golang:1.27-trixie
 
 # Install dependencies needed for nvm
 RUN apt-get update && apt-get install -y \
@@ -12,6 +12,7 @@ RUN useradd -m -u 1000 -s /bin/bash app && \
 
 # Switch to app user
 WORKDIR /home/app
+USER app
 
 # Install bootdev CLI
 RUN go install github.com/bootdotdev/bootdev@latest
