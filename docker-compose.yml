@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: Containerfile
-    image: golang-node-dev:latest
-    container_name: golang-node-app
+    image: golang-dev-boot:latest
+    container_name: golang-boot-app
     
     # Keep container running
     command: tail -f /dev/null

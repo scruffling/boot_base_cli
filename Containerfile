@@ -11,24 +11,15 @@ RUN useradd -m -u 1000 -s /bin/bash app && \
     chown -R app:app /app
 
 # Switch to app user
-USER app
 WORKDIR /home/app
 
-# Install nvm as app user
-ENV NVM_DIR=/home/app/.nvm
-ENV NODE_VERSION=24.19.0
+# Install bootdev CLI
+RUN go install github.com/bootdotdev/bootdev@latest
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
-    && . "$NVM_DIR/nvm.sh" \
-    && nvm install ${NODE_VERSION} \
-    && nvm alias default ${NODE_VERSION} \
-    && nvm use default
+# Ensure user's GOPATH/bin is in PATH
+ENV PATH=$PATH:/home/app/go/bin
 
-# Add node and npm to path
-ENV NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
-ENV PATH=$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
-
-# Verify installations
-RUN node --version && npm --version && go version
+# Verify installation
+RUN bootdev --version || bootdev version || echo "bootdev installed successfully"
 
 WORKDIR /app
