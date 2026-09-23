@@ -1,8 +1,11 @@
 FROM golang:1.27-trixie
 
-# Install dependencies needed for nvm
+# Install dependencies
+# coreutils needed for cat
 RUN apt-get update && apt-get install -y \
+    coreutils \
     curl \
+    jq \
     && rm -rf /var/lib/apt/lists/*
 
 # Create app user with UID 1000 and /app directory

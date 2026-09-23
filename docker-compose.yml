@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Containerfile
-    image: golang-dev-boot:latest
+    image: golang-boot-dev:latest
     container_name: golang-boot-app
     
     # Keep container running
@@ -11,7 +11,7 @@ services:
     
     # Mount current directory to /app in container
     volumes:
-      - ./app:/app:z
+      - ../boot_apps:/app:z
     
     # Set working directory
     working_dir: /app
