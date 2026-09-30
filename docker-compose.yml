@@ -25,8 +25,8 @@ services:
     
     # Expose ports (customize as needed)
     ports:
-      - "3000:3000"  # Node.js app
-      - "8080:8080"  # Go app
+      - "127.0.0.1:3000:3000"  # Node.js app
+      - "127.0.0.1:8080:8080"  # Go app
     
     # Optional: add network mode
     # network_mode: bridge
